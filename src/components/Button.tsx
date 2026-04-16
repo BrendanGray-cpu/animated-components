@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Button as FabricButton } from '@bamboohr/fabric';
+import CustomButton from './CustomButton';
 
 interface ButtonProps {
   label: string;
@@ -14,7 +14,7 @@ export function Button({ label, onClick }: ButtonProps) {
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       style={{ display: 'inline-block' }}
     >
-      <FabricButton onClick={onClick}>{label}</FabricButton>
+      <CustomButton onClick={onClick}>{label}</CustomButton>
     </motion.div>
   );
 }

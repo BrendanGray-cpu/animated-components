@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useState } from "react"
-import { Button as FabricButton } from "@bamboohr/fabric"
+import CustomButton from "../CustomButton"
 
 interface ArrowButtonProps {
   label: string;
@@ -17,7 +17,7 @@ export function ArrowButton({ label, onClick }: ArrowButtonProps) {
       onHoverEnd={() => setHovered(false)}
       style={{ display: "inline-block" }}
     >
-      <FabricButton onClick={onClick}>
+      <CustomButton color="primary" onClick={onClick}>
         <span style={{
           display: "flex",
           alignItems: "center",
@@ -42,7 +42,7 @@ export function ArrowButton({ label, onClick }: ArrowButtonProps) {
             <ArrowRight size={16} />
           </motion.span>
         </span>
-      </FabricButton>
+      </CustomButton>
     </motion.div>
   )
 }

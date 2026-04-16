@@ -1,11 +1,16 @@
 import { Button } from './components/Button';
 import { ArrowButton } from './components/ArrowButton';
 import PhysicsSpinner from './components/PhysicsSpinner';
-import { TextField, SelectField, IconV2, Button as FabricButton, ActionTile, AutocompleteMultiple, InPageMessaging } from '@bamboohr/fabric';
 import AnimatedTransferList from './components/AnimatedTransferList';
 import RubberBandSlider from './components/RubberBandSlider';
-import { InputAdornment } from '@mui/material';
-import { AlertCircle } from 'lucide-react';
+import CustomButton from './components/CustomButton';
+import CustomTextField from './components/CustomTextField';
+import CustomSelectField from './components/CustomSelectField';
+import CustomActionTile from './components/CustomActionTile';
+import CustomAutocompleteMultiple from './components/CustomAutocompleteMultiple';
+import CustomInPageMessaging from './components/CustomInPageMessaging';
+import Icon from './components/IconMap';
+import { AlertCircle, Sparkles, XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 
@@ -169,7 +174,7 @@ function App() {
           <Button label="Click Me" onClick={() => {}} />
           <ArrowButton label="Next" onClick={() => {}} />
           <div ref={transitionRef} style={{ display: 'inline-block' }}>
-            <FabricButton onClick={handleTransitionClick}>Transition</FabricButton>
+            <CustomButton onClick={handleTransitionClick}>Transition</CustomButton>
           </div>
           <motion.div
             onHoverStart={() => setPartyHovered(true)}
@@ -178,7 +183,7 @@ function App() {
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             style={{ display: 'inline-block' }}
           >
-            <FabricButton color="primary" onClick={() => {}}>
+            <CustomButton color="primary" onClick={() => {}}>
               <span style={{ display: 'flex', gap: '1px' }}>
                 {"Party Time!".split("").map((char, i) => (
                   <motion.span
@@ -195,7 +200,7 @@ function App() {
                   </motion.span>
                 ))}
               </span>
-            </FabricButton>
+            </CustomButton>
           </motion.div>
           <motion.div
             onHoverStart={() => setTooltipVisible(true)}
@@ -242,7 +247,7 @@ function App() {
                 </motion.div>
               )}
             </AnimatePresence>
-            <FabricButton color="secondary" onClick={() => {}}>Here's A Tip:</FabricButton>
+            <CustomButton color="secondary" onClick={() => {}}>Here's A Tip:</CustomButton>
           </motion.div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0' }}>
@@ -290,7 +295,7 @@ function App() {
                   transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', flexShrink: 0, color: '#48413F' }}>
-                    <IconV2 name={btn.icon} size={16} color={isActive ? 'neutral-forced-white' : undefined} />
+                    <Icon name={btn.icon} size={16} color={isActive ? 'neutral-forced-white' : undefined} />
                   </span>
                   <AnimatePresence initial={false}>
                     {isActive && (
@@ -357,7 +362,7 @@ function App() {
                   </motion.span>
                 )}
               </AnimatePresence>
-              <TextField
+              <CustomTextField
                 variant="single"
                 placeholder=""
                 width={100}
@@ -367,17 +372,10 @@ function App() {
                 onBlur={() => setIsFocused(false)}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      <span style={{ color: '#00618B', display: 'flex' }}>
-                        <IconV2 name="sparkles-regular" size={16} />
-                      </span>
-                    </InputAdornment>
+                    <span style={{ color: '#00618B', display: 'flex' }}>
+                      <Icon name="sparkles-regular" size={16} />
+                    </span>
                   ),
-                  sx: {
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      border: 'none !important',
-                    },
-                  },
                 }}
               />
             </div>
@@ -410,7 +408,7 @@ function App() {
                   Check out this error state
                 </motion.label>
               </div>
-              <TextField
+              <CustomTextField
                 placeholder="Type anything."
                 width={100}
                 status={errorFieldValue.length > 0 ? 'error' : undefined}
@@ -427,7 +425,7 @@ function App() {
                     style={{ overflow: 'hidden', marginTop: 4 }}
                   >
                     <div className="compact-message">
-                      <InPageMessaging
+                      <CustomInPageMessaging
                         type="error"
                         body="Oh no, something went wrong!"
                       />
@@ -454,7 +452,7 @@ function App() {
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               style={{ position: "relative", zIndex: selectOpen ? 20 : 1, marginTop: '1.5rem' }}
             >
-              <SelectField
+              <CustomSelectField
                 canSelectMultiple
                 items={[
                   { text: "Item 1", value: "1" },
@@ -473,7 +471,7 @@ function App() {
               />
             </motion.div>
             <div style={{ marginTop: '1.5rem' }}>
-              <AutocompleteMultiple
+              <CustomAutocompleteMultiple
                 label="My BFFs"
                 options={bffNames}
                 value={bffValues}
@@ -521,7 +519,7 @@ function App() {
                               lineHeight: 1,
                             }}
                           >
-                            <IconV2 name="circle-xmark-solid" size={14} />
+                            <XCircle size={14} />
                           </motion.button>
                         </motion.div>
                       );
@@ -529,10 +527,11 @@ function App() {
                   </AnimatePresence>
                 )}
                 renderOption={(props, option, state) => {
-                  const { key, ...rest } = props as React.HTMLAttributes<HTMLLIElement> & { key: string };
+                  const { key, onClick, ...rest } = props as React.HTMLAttributes<HTMLLIElement> & { key: string };
                   return (
                     <motion.li
                       key={key}
+                      onClick={onClick}
                       initial={{ opacity: 0, x: -4 }}
                       animate={{ opacity: 1, x: 0, backgroundColor: 'transparent' }}
                       transition={{
@@ -542,7 +541,13 @@ function App() {
                         delay: state.index * 0.03,
                       }}
                       whileHover={{ backgroundColor: '#f5f5f5', x: 4 }}
-                      {...rest}
+                      style={{
+                        padding: '8px 12px',
+                        cursor: 'pointer',
+                        borderRadius: '4px',
+                        fontSize: '14px',
+                        color: '#333',
+                      }}
                     >
                       {option}
                     </motion.li>
@@ -586,7 +591,7 @@ function App() {
                     transition: 'clip-path 0.2s ease',
                   }}
                 >
-                  <ActionTile
+                  <CustomActionTile
                     icon="egg-solid"
                     title="Guess what?"
                     titleSize="small"
@@ -634,7 +639,7 @@ function App() {
                     transition: 'clip-path 0.2s ease',
                   }}
                 >
-                  <ActionTile
+                  <CustomActionTile
                     icon="bird-solid"
                     title="Chicken Butt"
                     titleSize="small"
@@ -693,7 +698,7 @@ function App() {
                   backfaceVisibility: 'hidden',
                 }}
               >
-                <ActionTile
+                <CustomActionTile
                   icon="hand-solid"
                   title="Up High"
                   titleSize="small"
@@ -710,7 +715,7 @@ function App() {
                   transform: 'rotateY(180deg)',
                 }}
               >
-                <ActionTile
+                <CustomActionTile
                   icon="turtle-solid"
                   title={"Too\u00A0Slow"}
                   titleSize="small"
@@ -779,7 +784,7 @@ function App() {
                 <Button label="Click Me" onClick={() => {}} />
                 <ArrowButton label="Next" onClick={() => {}} />
                 <div style={{ display: 'inline-block' }}>
-                  <FabricButton onClick={() => {}}>Transition</FabricButton>
+                  <CustomButton onClick={() => {}}>Transition</CustomButton>
                 </div>
               </div>
             </section>
@@ -796,23 +801,16 @@ function App() {
                       borderRadius: 999,
                     }}
                   >
-                    <TextField
+                    <CustomTextField
                       variant="single"
                       placeholder=""
                       width={100}
                       InputProps={{
                         startAdornment: (
-                          <InputAdornment position="start">
-                            <span style={{ color: '#00618B', display: 'flex' }}>
-                              <IconV2 name="sparkles-regular" size={16} />
-                            </span>
-                          </InputAdornment>
+                          <span style={{ color: '#00618B', display: 'flex' }}>
+                            <Icon name="sparkles-regular" size={16} />
+                          </span>
                         ),
-                        sx: {
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            border: 'none !important',
-                          },
-                        },
                       }}
                     />
                   </div>
@@ -823,7 +821,7 @@ function App() {
               <h2 style={{ fontSize: '1.25rem', color: '#888', fontWeight: 'bold', marginBottom: '1rem' }}>Other</h2>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div style={{ width: 200, height: 120 }}>
-                  <ActionTile
+                  <CustomActionTile
                     icon="sparkle-solid"
                     title="ActionTile"
                     titleSize="small"

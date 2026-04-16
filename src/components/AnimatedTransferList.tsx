@@ -1,7 +1,8 @@
-import { TransferList, TransferListComponents, IconV2 } from '@bamboohr/fabric';
+import CustomTransferList, { CustomTransferListItem } from './CustomTransferList';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ReactElement } from 'react';
 import { useRef, useEffect } from 'react';
+import { ChevronRight, ChevronsRight, ChevronLeft, ChevronsLeft } from 'lucide-react';
 
 interface TransferItem {
   rowKey: string;
@@ -57,7 +58,7 @@ function makeListRenderer(side: 'left' | 'right') {
             exit={{ opacity: 0, x: exitX }}
             transition={spring}
           >
-            <TransferListComponents.TransferListItem
+            <CustomTransferListItem
               {...props}
               rowKey={item.rowKey}
               title={item.title}
@@ -113,7 +114,7 @@ export default function AnimatedTransferList({
   }, []);
 
   return (
-    <TransferList
+    <CustomTransferList
       leftListItems={leftItems}
       rightListItems={rightItems}
       onLeftRowSelect={({ key }) => {
@@ -150,7 +151,7 @@ export default function AnimatedTransferList({
             }}
             aria-label="Transfer all right"
           >
-            <IconV2 name="angles-right-regular" size={16} />
+            <ChevronsRight size={16} />
           </button>
           <button
             style={circleBtn}
@@ -165,7 +166,7 @@ export default function AnimatedTransferList({
             }}
             aria-label="Transfer selected right"
           >
-            <IconV2 name="angle-right-regular" size={16} />
+            <ChevronRight size={16} />
           </button>
           <button
             style={circleBtn}
@@ -182,7 +183,7 @@ export default function AnimatedTransferList({
             }}
             aria-label="Transfer selected left"
           >
-            <IconV2 name="angle-left-regular" size={16} />
+            <ChevronLeft size={16} />
           </button>
           <button
             style={circleBtn}
@@ -192,7 +193,7 @@ export default function AnimatedTransferList({
             }}
             aria-label="Transfer all left"
           >
-            <IconV2 name="angles-left-regular" size={16} />
+            <ChevronsLeft size={16} />
           </button>
         </div>
       )}

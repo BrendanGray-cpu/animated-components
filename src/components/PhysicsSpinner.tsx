@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Matter from 'matter-js';
-import { Spinner } from '@bamboohr/fabric';
+import CustomSpinner from './CustomSpinner';
 
 const AREA_WIDTH = 400;
 const AREA_HEIGHT = 300;
@@ -119,7 +119,7 @@ function PhysicsSpinner() {
         }}
       >
         <div style={{ transform: 'scale(2.5)' }}>
-          <Spinner size={24} />
+          <CustomSpinner size={24} />
         </div>
       </motion.div>
     </div>

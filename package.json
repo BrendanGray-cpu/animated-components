@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bamboohr/fabric": "^1.40.61",
     "dialkit": "^1.1.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.577.0",
