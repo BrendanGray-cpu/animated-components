@@ -164,10 +164,9 @@ function App() {
   return (
     <div style={{ padding: '2rem', textAlign: 'center', backgroundColor: current.background, color: current.text, minHeight: '100vh', transition: 'background-color 0ms, color 0ms', position: 'relative', overflow: 'hidden' }}>
       <h1 style={{ color: 'inherit' }}>Animated Components</h1>
-      <section style={{ marginTop: '2.5rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#888', fontWeight: 'bold', marginBottom: '1rem' }}>Buttons</h2>
+      <section style={{ marginTop: '84px', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <Button label="Click me" onClick={() => {}} />
+          <Button label="Click Me" onClick={() => {}} />
           <ArrowButton label="Next" onClick={() => {}} />
           <div ref={transitionRef} style={{ display: 'inline-block' }}>
             <FabricButton onClick={handleTransitionClick}>Transition</FabricButton>
@@ -243,10 +242,10 @@ function App() {
                 </motion.div>
               )}
             </AnimatePresence>
-            <FabricButton color="secondary" onClick={() => {}}>Here's a tip:</FabricButton>
+            <FabricButton color="secondary" onClick={() => {}}>Here's A Tip:</FabricButton>
           </motion.div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0' }}>
           <div
             style={{
               display: 'flex',
@@ -321,9 +320,6 @@ function App() {
             })}
           </div>
         </div>
-      </section>
-      <section style={{ marginTop: '2.5rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#888', fontWeight: 'bold', marginBottom: '1rem' }}>Inputs</h2>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: 540 }}>
             <div
@@ -556,9 +552,6 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
-      <section style={{ marginTop: '2.5rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#888', fontWeight: 'bold', marginBottom: '1rem' }}>Other</h2>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
           <div style={{ perspective: 1000, display: 'inline-block' }}>
             <motion.div
@@ -729,10 +722,10 @@ function App() {
             </motion.div>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <PhysicsSpinner />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', paddingBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: 216, position: 'relative' }}>
             <RubberBandSlider
               label="Stretchiness"
@@ -743,15 +736,15 @@ function App() {
             />
           </div>
         </div>
-      </section>
-      <section style={{ marginTop: '2.5rem', paddingBottom: '3rem', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ maxWidth: '100%' }}>
-          <AnimatedTransferList
-            leftItems={tlLeft}
-            rightItems={tlRight}
-            onLeftItemsChange={setTlLeft}
-            onRightItemsChange={setTlRight}
-          />
+        <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '3rem' }}>
+          <div style={{ maxWidth: '100%' }}>
+            <AnimatedTransferList
+              leftItems={tlLeft}
+              rightItems={tlRight}
+              onLeftItemsChange={setTlLeft}
+              onRightItemsChange={setTlRight}
+            />
+          </div>
         </div>
       </section>
       {/* Radial reveal overlay */}
@@ -783,7 +776,7 @@ function App() {
             <section style={{ marginTop: '2.5rem' }}>
               <h2 style={{ fontSize: '1.25rem', color: '#888', fontWeight: 'bold', marginBottom: '1rem' }}>Buttons</h2>
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                <Button label="Click me" onClick={() => {}} />
+                <Button label="Click Me" onClick={() => {}} />
                 <ArrowButton label="Next" onClick={() => {}} />
                 <div style={{ display: 'inline-block' }}>
                   <FabricButton onClick={() => {}}>Transition</FabricButton>
